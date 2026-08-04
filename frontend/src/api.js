@@ -5,9 +5,17 @@ const HOST = import.meta.env.DEV
 
 const API_BASE = `${HOST}/api`;
 
-export async function apiRequest(path, { method = "GET", body, token } = {}) {
-  const headers = { "Content-Type": "application/json" };
-  if (token) headers.Authorization = `Bearer ${token}`;
+export async function apiRequest(
+  path,
+  { method = "GET", body, token } = {}
+) {
+  const headers = {
+    "Content-Type": "application/json",
+  };
+
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
 
   const response = await fetch(`${API_BASE}${path}`, {
     method,
